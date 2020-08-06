@@ -10,7 +10,7 @@ pip install .
 
 ## Example
 ```python
-from <class-file> import GreedyTrainer
+from trainer import LayerwiseTrainer
 
 from keras.datasets import cifar10
 from keras.utils import to_categorical
@@ -18,9 +18,9 @@ from keras.models import Input, Model
 from keras.layers import Dense, Conv2D, Dropout, MaxPool2D, Flatten
 
 # Load data
-x_train,y_train,x_test,y_test = cifar10
-x_train = x_train - 255/2
-x_test = x_test - 255/2
+(x_train,y_train),(x_test,y_test) = cifar10.load_data()
+x_train = x_train - 255./2
+x_test = x_test - 255./2
 y_train = to_categorical(y_train)
 y_test = to_categorical(y_test)
 D = x_train.shape[1:]
@@ -43,12 +43,12 @@ x_out = Dense(units=d, activation="softmax", name="output")(x)
 model = Model(x_in, x_out, name="Model-Example")
 
 # Create trainer
-trainer = Trainer(model)
+trainer = LayerwiseTrainer(model)
 
 # Train model
 params = {"loss":"categorical_crossentropy", "metrics":["accuracy"], "optimizer":"nadam"}
 trainer.compile(**params)
-trainer.fit_by_batch(x_train, y_train, epochs=12, batch_size=256, validation_data=(x_test,y_test))
+trainer.fit_by_batch(x_train, y_train, epochs=12, batch_size=256, validation_data=(x_test,y_test), verbose=1)
 
 # Output results
 model.evaluate(x_test, y_test)
@@ -58,7 +58,7 @@ model.evaluate(x_test, y_test)
 ### Ignoring layers
 As added functionality, you can ignore layers that you either want trainable (either because they have few/no parameters, or because they are integral to the model). When passing the model into the trainer simnply specify the layer names that should be ignored.
 ```python
-trainer = Trainer(model=model, ignore=["dropout","flatten","pool","output"])
-trainer.compile(**params)
-trainer.fit_by_batch(x_train, y_train, epochs=12, batch_size=256, validation_data=(x_test,y_test))
+trainer = LayerwiseTrainer(model=model)
+trainer.compile(ignore=["dropout","flatten","pool","output"], **params)
+trainer.fit_by_batch(x_train, y_train, epochs=2, batch_size=256, validation_data=(x_test,y_test), verbose=1)
 ```
