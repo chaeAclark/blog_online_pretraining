@@ -1,3 +1,7 @@
+<p align="center">
+<img src="logo.png">
+</p>
+
 # Online Pre-Training Framework
 This is a flexible class for training specific layers of deep neural-nets in an online manner. This is accompanied with a blog post [HERE](https://www.twosixlabs.com/blog/). The pre-training refers to the greedy layer-wise training that the framework uses. The method is online in the sense that the model can be pre-trained with new data as it arrives.
 
