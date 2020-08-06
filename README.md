@@ -1,5 +1,5 @@
 <p align="center">
-<img src="logo.png">
+<img width=300 height=350 src="logo.png">
 </p>
 
 # Online Pre-Training Framework
