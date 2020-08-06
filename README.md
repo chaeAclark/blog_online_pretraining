@@ -2,7 +2,10 @@
 <img width=300 height=350 src="logo.png">
 </p>
 
-# Online Pre-Training Framework
+<h1 align="center">
+Online Pre-Training Framework
+</h1>
+
 This is a flexible class for training specific layers of deep neural-nets in an online manner. This is accompanied with a blog post [HERE](https://www.twosixlabs.com/blog/). The pre-training refers to the greedy layer-wise training that the framework uses. The method is online in the sense that the model can be pre-trained with new data as it arrives.
 
 ## Installing the class from source
@@ -58,7 +61,7 @@ trainer.fit_by_batch(x_train, y_train, epochs=12, batch_size=256, validation_dat
 model.evaluate(x_test, y_test)
 ```
 
-## Features
+## Additional Features
 ### Ignoring layers
 As added functionality, you can ignore layers that you either want trainable (either because they have few/no parameters, or because they are integral to the model). When passing the model into the trainer simnply specify the layer names that should be ignored.
 ```python
