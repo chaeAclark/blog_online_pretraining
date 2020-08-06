@@ -60,5 +60,5 @@ As added functionality, you can ignore layers that you either want trainable (ei
 ```python
 trainer = LayerwiseTrainer(model=model)
 trainer.compile(ignore=["dropout","flatten","pool","output"], **params)
-trainer.fit_by_batch(x_train, y_train, epochs=2, batch_size=256, validation_data=(x_test,y_test), verbose=1)
+trainer.fit_by_batch(x_train, y_train, epochs=12, batch_size=256, validation_data=(x_test,y_test), verbose=1)
 ```
