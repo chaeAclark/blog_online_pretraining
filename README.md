@@ -63,7 +63,7 @@ model.evaluate(x_test, y_test)
 
 ## Additional Features
 ### Ignoring layers
-As added functionality, you can ignore layers that you either want trainable (either because they have few/no parameters, or because they are integral to the model). When passing the model into the trainer simnply specify the layer names that should be ignored.
+As added functionality, you can ignore layers that you either want trainable (either because they have few/no parameters, or because they are integral to the model). When passing the model into the trainer simply specify the layer names that should be ignored.
 ```python
 trainer = LayerwiseTrainer(model=model)
 trainer.compile(ignore=["dropout","flatten","pool","output"], **params)
